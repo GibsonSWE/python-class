@@ -27,9 +27,9 @@ def error(fileName):
 		with open(fileName, mode='r') as f:
 			for line in f:
 				if line.find('[error]') != -1:
-					dateEnd = line.find(']')+1
+					dateEnd = line.find(']')
 					messageStart = line.find(']', 26)+1
-					print(line[0:dateEnd]+line[messageStart:])
+					print(line[1:dateEnd]+line[messageStart:])
 	except FileNotFoundError:
 		print(f'Logfile {fileName} not found.')
 		return
@@ -40,16 +40,16 @@ def notice(fileName):
 		with open(fileName, mode='r') as f:
 			for line in f:
 				if line.find('[notice]') != -1:
-					dateEnd = line.find(']')+1
+					dateEnd = line.find(']')
 					messageStart = line.find(']', 26)+1
-					print(line[0:dateEnd]+line[messageStart:])
+					print(line[1:dateEnd]+line[messageStart:])
 	except FileNotFoundError:
 		print(f'Logfile {fileName} not found.')
 		return
 
 def availArgs():
 	print('\nAvaliable arguments:')
-	print('\tstats\t- Show statistics for logfile')
+	print('\tstatistics\t- Show statistics for logfile')
 	print('\terror\t- Show a summary of error log entries')
 	print('\tnotice\t- Show a summary of notice log entries')
 
@@ -67,7 +67,7 @@ if __name__ == "__main__":
 			availArgs()
 		elif len(sys.argv) == 3:
 			argument = sys.argv[2]
-			if argument == 'stats':
+			if argument == 'statistics':
 				statistics(fileName)
 			elif argument == 'error':
 				error(fileName)
