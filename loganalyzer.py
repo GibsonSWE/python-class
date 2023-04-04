@@ -8,15 +8,14 @@ def statistics(fileName):
 	print(f'\nStatistics for {fileName}:\n')
 	try:
 		with open(fileName, mode='r') as f:
-
 			for line in f:
 				if line.find('[error]') != -1:
 					errors += 1
 
 				if line.find('[notice]') != -1:
 					notice += 1
-		print('    Total Errors: '+str(errors))
-		print('    Total Notice: '+str(notice))
+		print('errors '+str(errors))
+		print('notice '+str(notice))
 	except FileNotFoundError:
 		print(f'Logfile {fileName} not found.')
 		return
@@ -54,14 +53,11 @@ def availArgs():
 	print('\tnotice\t\t- Show a summary of notice log entries')
 
 
-
 if __name__ == "__main__":
-
 	if len(sys.argv) == 1:
 		print('Missing valid logfile.')
 	else:
 		fileName = sys.argv[1]
-
 		if len(sys.argv) == 2:
 			print('Missing argument.')
 			availArgs()
